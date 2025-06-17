@@ -8,7 +8,11 @@
   dotenv.config();
 
   const app = express();
-  app.use(cors());
+ // ✅ Enable CORS for frontend (Vite) running on port 5173
+  app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true, // only if you're using cookies or auth headers
+  }))
   app.use(express.json());
 
   // Define PORT from environment or fallback to 3000
