@@ -1,9 +1,7 @@
 import { Button } from "../ui/button"
 import { motion } from "framer-motion"
-type HeroProps = {
-  onRegisterClick: () => void
-}
-export const Hero = ({ onRegisterClick }: HeroProps) => {
+
+export const Hero = () => {
   return (
     <section className="relative min-h-screen pt-32 px-4 flex flex-col items-center justify-center text-center text-white overflow-hidden">
       
@@ -46,7 +44,7 @@ export const Hero = ({ onRegisterClick }: HeroProps) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
       >
-        <Button className="text-base px-6 py-3" onClick={onRegisterClick}>
+        <Button className="text-base px-6 py-3">
           Start Building Your Brain 🧠
         </Button>
         <Button variant="secondary" className="text-base px-6 py-3">

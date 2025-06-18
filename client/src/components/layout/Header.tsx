@@ -9,12 +9,8 @@ import {
 import { Button } from "../ui/button"
 import RegisterForm from "../RegisterForm"
 import { LoginForm } from "../LoginForm";
-import { useState } from "react";
-type HeaderProps = {
-  onRegisterClick: () => void
-}
-export const Header = ({ onRegisterClick }: HeaderProps) => {
-    const [open, setOpen] = useState(false)
+
+export const Header = () => {
     return (
         <>
             <div className="fixed top-6 inset-x-0 mx-auto w-[90%] max-w-5xl 
@@ -39,9 +35,9 @@ export const Header = ({ onRegisterClick }: HeaderProps) => {
                     </DialogContent>
                 </Dialog>
 
-                    <Dialog open={open} onOpenChange={setOpen}>
+                    <Dialog>
                         <DialogTrigger asChild>
-                            <Button onClick={onRegisterClick} variant={"default"} className="hover:bg-gray-800 rounded-4xl cursor-pointer">Register</Button>
+                            <Button variant={"default"} className="hover:bg-gray-800 rounded-4xl cursor-pointer">Register</Button>
                         </DialogTrigger>
                         <DialogContent className="text-black">
                             <DialogHeader>
@@ -49,7 +45,7 @@ export const Header = ({ onRegisterClick }: HeaderProps) => {
                                     Create Your Account
                                 </DialogTitle>
                             </DialogHeader>
-                            <RegisterForm onSuccess={() => setOpen(false)} />
+                            <RegisterForm />
                         </DialogContent>
                     </Dialog>
                 </div>
