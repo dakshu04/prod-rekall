@@ -29,6 +29,7 @@ export const RegisterForm = ({ onSuccess }: Props) => {
       console.log("✅ User created:", res.data)
 
       if (onSuccess) onSuccess() // closes dialog
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       const message =
         err?.response?.data?.message || err?.message || "Something went wrong"

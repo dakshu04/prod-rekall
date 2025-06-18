@@ -1,18 +1,15 @@
 
 import './App.css'
 import './index.css'
-import { Header } from './components/layout/Header'
 import { Home } from './components/Home'
 import { Toaster } from 'sonner'
 
 function App() {
-  // const [count, setCount] = useState(0)
 
   return (
     <>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <div>
-        <Header />
         <Home />
       </div>
     </>
