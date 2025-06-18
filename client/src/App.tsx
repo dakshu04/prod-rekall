@@ -1,28 +1,19 @@
-import { Toaster } from "sonner"
-import "./App.css"
-import Header from "./components/layout/Header"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import RegisterForm from "./components/RegisterForm"
-import Hero from "./components/sections/Hero"
-import { LogIn } from "lucide-react"
-import { AuthProvider } from "./context/AuthContext"
 
+import './App.css'
+import './index.css'
+import { Header } from './components/layout/Header'
+import { Home } from './components/Home'
 
 function App() {
+  // const [count, setCount] = useState(0)
+
   return (
-    <BrowserRouter>
-     <AuthProvider>
-      <Toaster />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/signup" element={<RegisterForm closeDialog={function (): void {
-          throw new Error("Function not implemented.")
-        } } />} />
-        <Route path="/login" element={<LogIn />} />
-      </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+    <>
+      <div className='bg-[#211652] min-h-screen'>
+        <Header />
+        <Home />
+      </div>
+    </>
   )
 }
 

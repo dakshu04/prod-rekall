@@ -1,93 +1,55 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
+
+import { Button } from "../ui/button"
 import RegisterForm from "../RegisterForm"
-import LoginForm from "../LoginForm"
-import { useAuth } from "@/context/AuthContext"
-import { Link } from "react-router-dom"
+import { LoginForm } from "../LoginForm";
 
-const Header = () => {
-  const [open, setOpen] = useState(false)
-  const [mode, setMode] = useState<"login" | "register">("login")
+export const Header = () => {
+    return (
+        <>
+            <div className="fixed top-6 inset-x-0 mx-auto w-[90%] max-w-5xl 
+                bg-white/20 dark:bg-white/10 backdrop-blur-xl 
+                border-white/30 dark:border-white/20 
+                px-6 py-3 rounded-full flex items-center justify-between 
+                shadow-lg z-50 transition-all duration-300">
+                <div className="text-xl text-white font-bold">Recall  🧠</div>
+                <div>
 
-  const { isAuthenticated, logout } = useAuth()
-  const closeDialog = () => setOpen(false)
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant={"secondary"} className="mr-3 cursor-pointer shadow-lg rounded-4xl text-black">Login</Button>
+                    </DialogTrigger>
+                    <DialogContent className="text-black">
+                        <DialogHeader>
+                            <DialogTitle>
+                                Welcome Back
+                            </DialogTitle>
+                        </DialogHeader>
+                        <LoginForm />
+                    </DialogContent>
+                </Dialog>
 
-  return (
-    <header className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl 
-      bg-white/20 dark:bg-white/10 backdrop-blur-xl 
-      border-white/30 dark:border-white/20 
-      px-6 py-3 rounded-full flex items-center justify-between 
-      shadow-lg z-50 transition-all duration-300"
-    >
-      {/* Logo */}
-      <div className="font-semibold text-2xl text-white">Rekall 🧠</div>
-
-      {/* Auth Buttons */}
-      <div className="flex items-center gap-3">
-        {isAuthenticated ? (
-          <>
-            <Link to="/dashboard">
-              <Button className="text-sm px-4 py-2">Profile</Button>
-            </Link>
-            <Button variant="outline" onClick={logout} className="text-sm px-4 py-2">
-              Logout
-            </Button>
-          </>
-        ) : (
-          <Dialog open={open} onOpenChange={setOpen}>
-            {/* Login Button */}
-            <DialogTrigger asChild>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setMode("login")
-                  setOpen(true)
-                }}
-                className="text-sm px-4 py-2"
-              >
-                Login
-              </Button>
-            </DialogTrigger>
-
-            {/* Register Button */}
-            <DialogTrigger asChild>
-              <Button
-                onClick={() => {
-                  setMode("register")
-                  setOpen(true)
-                }}
-                className="text-sm px-4 py-2"
-              >
-                Register
-              </Button>
-            </DialogTrigger>
-
-            {/* Modal Dialog */}
-            <DialogContent className="sm:max-w-[425px] bg-white text-black">
-              <DialogHeader>
-                <DialogTitle className="text-xl">
-                  {mode === "login" ? "Login to Rekall" : "Create Your Account"}
-                </DialogTitle>
-              </DialogHeader>
-
-              {mode === "login" ? (
-                <LoginForm closeDialog={closeDialog} />
-              ) : (
-                <RegisterForm closeDialog={closeDialog} />
-              )}
-            </DialogContent>
-          </Dialog>
-        )}
-      </div>
-    </header>
-  )
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant={"default"} className="hover:bg-gray-800 rounded-4xl cursor-pointer">Register</Button>
+                        </DialogTrigger>
+                        <DialogContent className="text-black">
+                            <DialogHeader>
+                                <DialogTitle>
+                                    Create Your Account
+                                </DialogTitle>
+                            </DialogHeader>
+                            <RegisterForm />
+                        </DialogContent>
+                    </Dialog>
+                </div>
+            </div>
+        </>
+    )
 }
-
-export default Header
