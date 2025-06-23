@@ -64,7 +64,7 @@ router.get("/content/all", authenticateToken, async (req: AuthRequest, res) : Pr
     }
 });
 
-router.put("/content/:id", authenticateToken, async (req: AuthRequest, res) : Promise<void> => {
+router.put("/content/edit/:id", authenticateToken, async (req: AuthRequest, res) : Promise<void> => {
     try {
         const { id } = req.params;
         const { title, description, tag, link } = req.body;
@@ -90,7 +90,7 @@ router.put("/content/:id", authenticateToken, async (req: AuthRequest, res) : Pr
     }
 });
 
-router.delete("/content/:id", authenticateToken, async (req: AuthRequest, res) : Promise<void> => {
+router.delete("/content/delete/:id", authenticateToken, async (req: AuthRequest, res) : Promise<void> => {
     try {
     const { id } = req.params;
 
