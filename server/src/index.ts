@@ -6,11 +6,20 @@
   import userRoutes from "./routes/userAuth"; // Add this import
   // Load environment variables from .env
   dotenv.config();
-
+  const allowedOrigins = [
+  "http://localhost:5173",
+  "https://prod-rekall-fslh.vercel.app/"
+  ];
   const app = express();
  // ✅ Enable CORS for frontend (Vite) running on port 5173
   app.use(cors({
-  origin: "https://prod-rekall-fslh.vercel.app/",
+  origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error("Not allowed by CORS"))
+      }
+  },
   credentials: true, // only if you're using cookies or auth headers
   }))
   app.use(express.json());

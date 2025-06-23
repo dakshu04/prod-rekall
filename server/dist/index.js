@@ -11,10 +11,21 @@ const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const userAuth_1 = __importDefault(require("./routes/userAuth")); // Add this import
 // Load environment variables from .env
 dotenv_1.default.config();
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://prod-rekall-fslh.vercel.app/"
+];
 const app = (0, express_1.default)();
 // ✅ Enable CORS for frontend (Vite) running on port 5173
 app.use((0, cors_1.default)({
-    origin: "https://rekall.vercel.app",
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true, // only if you're using cookies or auth headers
 }));
 app.use(express_1.default.json());

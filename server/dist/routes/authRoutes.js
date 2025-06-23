@@ -24,6 +24,7 @@ router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function*
         const existingUser = yield UserModel_1.UserModel.findOne({ email });
         if (existingUser) {
             res.status(400).json({ message: "User already exists" });
+            return;
         }
         const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
         const shareLink = (0, crypto_1.randomUUID)();
