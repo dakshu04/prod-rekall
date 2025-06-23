@@ -1,10 +1,11 @@
+// src/lib/axios.ts
 import axios from "axios"
 
-
+const backendURL = import.meta.env.VITE_BACKEND_URL
 
 const instance = axios.create({
-  baseURL: "https://prod-rekall-fslh.vercel.app/api", // ✅ Correct string interpolation
-  withCredentials: true,         // Optional: Only needed if you use cookies
+  baseURL: `${backendURL}/api`, // ✅ Correct usage
+  withCredentials: true,         // Only needed if your backend sets cookies (optional)
   headers: {
     "Content-Type": "application/json",
   },
