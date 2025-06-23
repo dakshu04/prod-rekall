@@ -126,6 +126,12 @@ export const Dashboard = () => {
             </li>
           ))}
         </ul>
+        <Button onClick={() => {
+          localStorage.removeItem("token")  // 🔑 Remove JWT
+          window.location.href = "/" }}  
+          className=" bg-red-600 hover:bg-red-700 mt-2 text-white" >
+          Logout
+        </Button>
       </aside>
 
       {/* 🔹 Main Content */}
