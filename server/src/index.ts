@@ -10,7 +10,7 @@
   const app = express();
  // ✅ Enable CORS for frontend (Vite) running on port 5173
   app.use(cors({
-  origin: "https://rekall.vercel.app",
+  origin: "https://prod-rekall-fslh.vercel.app/",
   credentials: true, // only if you're using cookies or auth headers
   }))
   app.use(express.json());
