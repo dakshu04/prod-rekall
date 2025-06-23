@@ -56,6 +56,7 @@ router.post("/signin", async (req: Request, res: Response) : Promise<void> => {
 
         if(!isMatch) {
             res.status(400).json({
+                success: false,
                 message: "Invalid credentials"
             })
             return
@@ -69,6 +70,7 @@ router.post("/signin", async (req: Request, res: Response) : Promise<void> => {
 
         // signin successfull
         res.status(200).json({
+            success: true,
             message: "Login successfull",
             token,
             user: {
