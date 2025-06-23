@@ -4,7 +4,7 @@ import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { Input } from "./ui/input"
 import { TwitterTweetEmbed } from "react-twitter-embed"
-
+import { toast } from "sonner"
 interface ContentItem {
   _id: string
   title: string
@@ -128,7 +128,10 @@ export const Dashboard = () => {
         </ul>
         <Button onClick={() => {
           localStorage.removeItem("token")  // 🔑 Remove JWT
-          window.location.href = "/" }}  
+          toast.success("Logged out successfully ✅")
+          setTimeout(() => {
+          window.location.href = "/"
+          }, 1000) }}  
           className=" bg-red-600 hover:bg-red-700 mt-2 text-white" >
           Logout
         </Button>
