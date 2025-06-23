@@ -3,7 +3,6 @@ import axios from "axios"
 import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { Input } from "./ui/input"
-import { TwitterTweetEmbed } from "react-twitter-embed"
 import { toast } from "sonner"
 
 const backendURL = import.meta.env.VITE_BACKEND_URL
@@ -23,10 +22,10 @@ const getYouTubeId = (url: string) => {
 }
 
 // 🔹 Extract Tweet ID from Twitter URL
-const getTweetId = (url: string) => {
-  const match = url.match(/status\/(\d+)/)
-  return match?.[1] || null
-}
+// const getTweetId = (url: string) => {
+//   const match = url.match(/status\/(\d+)/)
+//   return match?.[1] || null
+// }
 
 export const Dashboard = () => {
   const [contents, setContents] = useState<ContentItem[]>([])
@@ -184,11 +183,11 @@ export const Dashboard = () => {
               )}
 
               {/* 🔹 Embedded Twitter Tweet */}
-              {item.tag === "twitter" && getTweetId(item.link) && (
+              {/* {item.tag === "twitter" && getTweetId(item.link) && (
                 <div className="rounded overflow-hidden mt-2">
                   <TwitterTweetEmbed tweetId={getTweetId(item.link)!} />
                 </div>
-              )}
+              )} */}
 
               {/* 🔹 Raw fallback link */}
               {!["youtube", "twitter"].includes(item.tag) && (
