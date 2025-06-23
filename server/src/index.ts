@@ -8,7 +8,7 @@
   dotenv.config();
   const allowedOrigins = [
   "http://localhost:5173",
-  "https://prod-rekall-fslh.vercel.app/"
+  "https://prod-rekall-fslh.vercel.app"
   ];
   const app = express();
  // ✅ Enable CORS for frontend (Vite) running on port 5173
