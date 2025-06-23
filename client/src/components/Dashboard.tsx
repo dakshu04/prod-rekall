@@ -5,6 +5,9 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { Input } from "./ui/input"
 import { TwitterTweetEmbed } from "react-twitter-embed"
 import { toast } from "sonner"
+
+const backendURL = import.meta.env.VITE_BACKEND_URL
+
 interface ContentItem {
   _id: string
   title: string
@@ -43,7 +46,7 @@ export const Dashboard = () => {
   // 🔹 Fetch content on load
   const fetchContent = async () => {
     const token = localStorage.getItem("token")
-    const res = await axios.get("http://localhost:3000/api/user/content/all", {
+    const res = await axios.get(`${backendURL}/api/user/content/all`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     setContents(res.data.contents)
@@ -54,7 +57,7 @@ export const Dashboard = () => {
   const handleAddContent = async () => {
     const token = localStorage.getItem("token")
     await axios.post(
-      "http://localhost:3000/api/user/content/add",
+      `${backendURL}/api/user/content/add`,
       { title, description, link, tag },
       { headers: { Authorization: `Bearer ${token}` } }
     )
@@ -68,7 +71,7 @@ export const Dashboard = () => {
   // 🔹 Delete content
   const handleDelete = async (id: string) => {
     const token = localStorage.getItem("token")
-    await axios.delete(`http://localhost:3000/api/user/content/delete/${id}`, {
+    await axios.delete(`${backendURL}/api/user/content/delete/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     fetchContent()
@@ -79,7 +82,7 @@ export const Dashboard = () => {
     if (!editingItem) return
     const token = localStorage.getItem("token")
     await axios.put(
-      `http://localhost:3000/api/user/content/edit/${editingItem._id}`,
+      `${backendURL}/api/user/content/edit/${editingItem._id}`,
       {
         title: editingItem.title,
         description: editingItem.description,

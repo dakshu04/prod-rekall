@@ -8,6 +8,8 @@ import axios from "axios"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 
+const backendURL = import.meta.env.VITE_BACKEND_URL
+
 export const LoginForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -19,7 +21,7 @@ export const LoginForm = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post("http://localhost:3000/api/auth/signin", {
+      const response = await axios.post(`${backendURL}/api/auth/signin`, {
         email,
         password,
       }, 
